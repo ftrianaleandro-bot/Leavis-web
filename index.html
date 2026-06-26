@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Leavis</title>
+</head>
+
+<body>
+
+    <!-- ===== TITULO PRINCIPAL ===== -->
+    <h1 class="titulo">
+        LEAVIS Soluciones Tecnológicas</h1>
+
+    <h2 class="subtitulo">Bienvenido a Leavis</h2>
+
+    <h2 class="descripcion">Construyendo el futuro de la tecnología mediante servicios de reparación,
+        mantenimiento y soluciones innovadoras.</h2>
+
+        <p>
+            Correo:
+            contacto.leavis@gmail.com
+
+        </p>
+
+        <p>
+
+            Horarios de atención: Lunes a Viernes de 9:00 a.m. a 6:00 p.m.
+            
+        </p>
+
+    <!-- ===== SOBRE NOSOTROS ===== -->
+    <h2>Sobre nosotros</h2>
+
+    <p>
+        Leavis es un proyecto enfocado en brindar soluciones tecnológicas
+mediante servicios de mantenimiento, diagnóstico y reparación de
+dispositivos electrónicos. Nuestro objetivo es ofrecer un servicio
+confiable y de calidad para satisfacer las necesidades de nuestros clientes.
+    </p>
+
+    <!-- ===== SERVICIOS ===== -->
+    <h2>Servicios</h2>
+
+    <ul>
+        <li>Reparación de celulares</li>
+        <li>Reparación de computadores</li>
+        <li>Reparación de laptops</li>
+        <li>Reparación de controles</li>
+        <li>Mantenimiento preventivo</li>
+        <li>Diagnóstico técnico</li>
+    </ul>
+
+    <!-- ===== PROCESO DE TRABAJO ===== -->
+    <h2>Proceso de trabajo</h2>
+
+    <ol>
+        <li>Contacto: El cliente se pone en contacto con nosotros a través de nuestro sitio web, correo electrónico o teléfono.</li>
+        <li>Diagnóstico: Evaluamos el problema del dispositivo y proporcionamos un presupuesto para la reparación.</li>
+        <li>Aprobación: El cliente aprueba el presupuesto y nos autoriza a proceder con la reparación.</li>
+        <li>Reparación: Nuestro equipo técnico realiza la reparación del dispositivo de manera eficiente y profesional.</li>
+        <li>Entrega: Una vez completada la reparación, el cliente recibe su dispositivo reparado junto con una garantía de servicio.</li>
+    </ol>
+
+    <!-- ===== MISIÓN Y VISIÓN (ESTILO TARJETAS) ===== -->
+    <div class="bloque-dual">
+
+        <div class="card">
+
+            <h2>Mision</h2>
+
+            <p>
+                Convertir a Leavis en una empresa tecnológica líder, capaz de diseñar, desarrollar y comercializar productos innovadores que transformen la forma en que las personas interactúan con la tecnología.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Vision</h2>
+
+            <p>
+                Acercar la tecnología a las personas mediante soluciones confiables, innovación constante y una experiencia que inspire confianza en cada producto y servicio.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ===== FORMULARIO ===== -->
+    <h2>Contacto</h2>
+
+    <form action="#" method="post">
+
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Teléfono:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="Servibio">
+            Seleccione un servicio:
+        </label>
+
+        <select id="servicio" name="servicio" required>
+            <option>Reparacion de celulares</option>
+            <option>Reparacion de computadores</option>
+            <option>Reparacion de laptops</option>
+            <option>Reparacion de controles</option>
+            <option>Mantenimiento preventivo</option>
+            <option>Diagnostico tecnico</option>
+        </select>
+
+        <label for="message">Mensaje:</label>
+
+        <textarea id="message" 
+        name="message"
+        rows="4"
+        required></textarea>
+
+        <input type="submit" value="Enviar">
+
+        <p><strong>Correo:</strong>contacto.leavis@gmail.com</p>
+        <p><strong>Teléfonos:</strong></p>
+        <ul>
+            <li>+57 321 242 5279</li>
+            <li>+57 311 885 6160</li>
+        </ul>
+        </p>
+
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("g92CxzA_UGrXjci2G");
+
+const formulario = document.querySelector("form");
+
+formulario.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+const boton = document.querySelector(
+'input[type="submit"]'
+);
+
+boton.disabled = true;
+boton.value = "Enviando...";
+
+emailjs.send(
+"service_h97c4sk",
+"template_kv0eh8e",
+{
+
+name: document.getElementById("name").value,
+
+email: document.getElementById("email").value,
+
+phone: document.getElementById("phone").value,
+
+servicio: document.getElementById("servicio").value,
+
+message: document.getElementById("message").value
+
+})
+
+.then(function(){
+
+alert(
+"Solicitud enviada correctamente"
+);
+
+formulario.reset();
+
+boton.value = "Enviado ✓";
+
+setTimeout(function(){
+
+boton.disabled=false;
+boton.value="Enviar";
+
+},3000);
+
+})
+
+.catch(function(error){
+
+alert(
+"Error al enviar: " + error.text
+);
+
+boton.disabled=false;
+boton.value="Enviar";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
